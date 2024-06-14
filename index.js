@@ -1,7 +1,7 @@
 const express = require(`express`);
 const app = express();
 const mongoose = require(`mongoose`);
-const dotenv = require(`dotenv`)
+const dotenv = require(`dotenv`).config()
 
 
 mongoose
@@ -68,21 +68,22 @@ app.post(`/createuser`, async (req, res) => {
   }
 });
 
+//Push edited code
 //get all students
-app.get(`/getallstudents`, async (req, res) => {
-  try {
-    const allstudents = await myModel.find();
-    allstudents.sort((a,b)=>{
-      if(a.Name < b.Name) return -1;
-    })
-    res.status(200).json({
-      message: `Kindly find below the ${allstudents.length} registered students;`,
-      data: allstudents,
-    });
-  } catch (e) {
-    res.status(500).json(e.message);
-  }
-});
+// app.get(`/getallstudents`, async (req, res) => {
+//   try {
+//     const allstudents = await myModel.find();
+//     allstudents.sort((a,b)=>{
+//       if(a.Name < b.Name) return -1;
+//     })
+//     res.status(200).json({
+//       message: `Kindly find below the ${allstudents.length} registered students;`,
+//       data: allstudents,
+//     });
+//   } catch (e) {
+//     res.status(500).json(e.message);
+//   }
+// });
 
 // get one student by ID
 app.get(`/getone/:id`, async (req, res) => {
